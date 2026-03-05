@@ -2,13 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Install dependencies') {
-            steps {
-                // Good practice: Ensure pip is up to date
-                sh 'sudo apt-get install -y python3 python3-pip'
-            }
-        }
-        stage('Verify Installation') {
+        stage('Verify Dependencies') {
             steps {
                 sh 'python3 --version'
                 sh 'python3 -m pip --version'
