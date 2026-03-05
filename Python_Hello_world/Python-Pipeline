@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install dependencies') {
+            steps {
+                // Good practice: Ensure pip is up to date
+                sh 'python3 -m pip install --upgrade pip'
+            }
+        }
+        stage('Run Python Hello World') {
+            steps {
+                // Using a multi-line string to run Python code directly
+                sh '''
+                python3 -c "print('----------------------------------')"
+                python3 -c "print('Hello World from inside a Jenkinsfile!')"
+                python3 -c "print('Python version being used:')"
+                python3 --version
+                python3 -c "print('----------------------------------')"
+                '''
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo 'Finished executing Python script.'
+        }
+    }
+}
